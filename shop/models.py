@@ -15,7 +15,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     image = models.ImageField(upload_to="", default="")
-    category= models.ManyToManyField('Category',default=1 )
+    #category= models.ManyToManyField('Category',default=1 )
 
     def __str__(self):
         return self.name
@@ -107,12 +107,12 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
     
-class Category(models.Model):
-    name= models.CharField(max_length=50)
+# class Category(models.Model):
+#     name= models.CharField(max_length=50)
 
-    @staticmethod
-    def get_all_categories():
-        return Category.objects.all()
+#     @staticmethod
+#     def get_all_categories():
+#         return Category.objects.all()
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
