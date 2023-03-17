@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Online Shopping {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="sales-wrapper">
+	<div class="sales">
+		<div class="sales-details">
+			<div class="sales-top">
+				<h2>Best selling product</h2>
+			</div>
+			<div class="sales-nav">
+				<div><a href="#">Laptops</a></div>
+				<div><a href="#">Consoles</a></div>
+				<div><a href="#">Accessories</a></div>
+				<div><a href="#">Games</a></div>
+			</div>
+			<div class="sales-products">
+				<div class="sales-product-wrap">
+					<div class="img-sales" id="img-sales">
+						<div class="img-sales-wrap" style="height: 18rem;">
+							<img src="static/pic1.jpeg" alt="">
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="sales-product-wrap" id="img-sales">
+					<div class="img-sales">
+						<div class="img-sales-wrap" style="height: 18rem;">
+							<img src="static/console.jpeg" alt="">
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="sales-product-wrap">
+					<div class="img-sales" id="img-sales">
+						<div class="img-sales-wrap" style="height: 18rem;">
+							<img src="static/ass23.jpeg" alt="" >
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="sales-product-wrap">
+					<div class="img-sales" id="img-sales">
+						<div class="img-sales-wrap" style="height: 18rem;">
+							<img src="static/game.jpeg" alt="">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container mt-2 mb-3">
+
+  <div class="row">
+    {% for product in products %}
+    <div class="sales-product-wrap col-lg-4 my-4">
+      <div class="img-sales card shadow align-items-center">
+		<div class="img-sales-wrap">        <img src="/media/{{product.image}}" class="card-img-top" style="width: 170px; height: 260px;" alt="...">
+		</div>
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <hr>
+          {% if request.user.is_authenticated %}
+          <button data-product="{{product.id}}" data-action="add" class="btn add-btn update-cart"
+            style="background-color: #8c5d4f; color: white;">Add To Cart</button>
+          <a href="/product_view/{{product.id}}/" class="btn btn-outline-secondary">View</a>
+          {% else %}
+          <button class="btn" style="background-color: #8c5d4f; color: white;">Login to add the item</button>
+          {% endif %}
+          <h4 style="display: inline-block; float:right;">&nbsp;N{{product.price}}</h4>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+{% if alert %}
+  alert("Logout Sucessfull.")
+  window.location.href = '/'
+{% endif %}
+</script>
+{% endblock %}
